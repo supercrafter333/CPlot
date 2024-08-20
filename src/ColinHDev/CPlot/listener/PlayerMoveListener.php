@@ -49,6 +49,7 @@ class PlayerMoveListener implements Listener {
         if ($toPlot instanceof Plot) {
             if ($fromPlot === false) {
                 $playerEnterPlotEvent = new PlayerEnterPlotEvent($toPlot, $player);
+                $playerEnterPlotEvent->call();
                 if ($event->isCancelled()) {
                     $playerEnterPlotEvent->cancel();
                 } else if (!$player->hasPermission("cplot.bypass.deny") && $toPlot->isPlotDenied($player)) {

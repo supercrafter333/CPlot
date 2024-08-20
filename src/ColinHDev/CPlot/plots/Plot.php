@@ -392,6 +392,7 @@ class Plot extends BasePlot {
             function () use ($biomeID, $onSuccess, $onError) {
                 /** @phpstan-var PlotBiomeChangeAsyncEvent $event */
                 $event = yield from PlotBiomeChangeAsyncEvent::create($this, $biomeID);
+                $event->call();
                 if ($event->isCancelled()) {
                     if ($onError !== null) {
                         $onError();
@@ -419,6 +420,7 @@ class Plot extends BasePlot {
             function () use ($block, $onSuccess, $onError) {
                 /** @phpstan-var PlotBorderChangeAsyncEvent $event */
                 $event = yield from PlotBorderChangeAsyncEvent::create($this, $block);
+                $event->call();
                 if ($event->isCancelled()) {
                     if ($onError !== null) {
                         $onError();
@@ -446,6 +448,7 @@ class Plot extends BasePlot {
             function () use ($block, $onSuccess, $onError) {
                 /** @phpstan-var PlotWallChangeAsyncEvent $event */
                 $event = yield from PlotWallChangeAsyncEvent::create($this, $block);
+                $event->call();
                 if ($event->isCancelled()) {
                     if ($onError !== null) {
                         $onError();
@@ -549,6 +552,7 @@ class Plot extends BasePlot {
             function () use ($onSuccess, $onError) {
                 /** @phpstan-var PlotClearAsyncEvent $event */
                 $event = yield from PlotClearAsyncEvent::create($this);
+                $event->call();
                 if ($event->isCancelled()) {
                     if ($onError !== null) {
                         $onError();
@@ -584,6 +588,7 @@ class Plot extends BasePlot {
             function () use ($onSuccess, $onError) {
                 /** @phpstan-var PlotResetAsyncEvent $event */
                 $event = yield from PlotResetAsyncEvent::create($this);
+                $event->call();
                 if ($event->isCancelled()) {
                     if ($onError !== null) {
                         $onError();
