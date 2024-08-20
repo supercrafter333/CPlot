@@ -104,6 +104,7 @@ class TrustSubcommand extends AsyncSubcommand {
         $plotPlayer = new PlotPlayer($playerData, PlotPlayer::STATE_TRUSTED);
         /** @phpstan-var PlotPlayerAddAsyncEvent $event */
         $event = yield from PlotPlayerAddAsyncEvent::create($plot, $plotPlayer, $sender);
+        $event->call();
         if ($event->isCancelled()) {
             PlotLockManager::getInstance()->unlockPlots($lock, $plot);
             return;

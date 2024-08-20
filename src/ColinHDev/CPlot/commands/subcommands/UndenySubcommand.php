@@ -87,6 +87,7 @@ class UndenySubcommand extends AsyncSubcommand {
 
         /** @phpstan-var PlotPlayerRemoveAsyncEvent $event */
         $event = yield from PlotPlayerRemoveAsyncEvent::create($plot, $plotPlayer, $sender);
+        $event->call();
         if ($event->isCancelled()) {
             PlotLockManager::getInstance()->unlockPlots($lock, $plot);
             return;

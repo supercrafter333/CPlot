@@ -92,6 +92,7 @@ class ClaimSubcommand extends AsyncSubcommand {
 
         /** @phpstan-var PlotClaimAsyncEvent $event */
         $event = yield from PlotClaimAsyncEvent::create($plot, $sender);
+        $event->call();
         if ($event->isCancelled()) {
             return;
         }

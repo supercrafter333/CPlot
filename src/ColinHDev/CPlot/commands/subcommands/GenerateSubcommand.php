@@ -43,6 +43,7 @@ class GenerateSubcommand extends AsyncSubcommand {
 
         /** @phpstan-var PlotWorldGenerateAsyncEvent $event */
         $event = yield from PlotWorldGenerateAsyncEvent::create($worldName, $worldSettings, $options);
+        $event->call();
         if ($event->isCancelled()) {
             return;
         }

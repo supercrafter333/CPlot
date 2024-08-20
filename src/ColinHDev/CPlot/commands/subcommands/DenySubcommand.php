@@ -104,6 +104,7 @@ class DenySubcommand extends AsyncSubcommand {
         $plotPlayer = new PlotPlayer($playerData, PlotPlayer::STATE_DENIED);
         /** @phpstan-var PlotPlayerAddAsyncEvent $event */
         $event = yield from PlotPlayerAddAsyncEvent::create($plot, $plotPlayer, $sender);
+        $event->call();
         if ($event->isCancelled()) {
             PlotLockManager::getInstance()->unlockPlots($lock, $plot);
             return;
